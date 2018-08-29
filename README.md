@@ -33,3 +33,9 @@ cd app/web-technologies-app
 npm install
 ```
 This will install all the required dependencies for the front end application.
+
+Once you have installed the required dependencies you can start the front end server with the following command:
+```
+ng serve
+```
+This will list the address that the front end is being hosted.
