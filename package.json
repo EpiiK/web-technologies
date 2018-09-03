@@ -1,8 +1,8 @@
 {
-  "name": "healthchain_backend",
+  "name": "web-technologies assignment 2",
   "version": "1.0.0",
-  "description": "Back end REST API for connecting app and blockchain.",
-  "main": "index.js",
+  "description": "Back end controller for web-technologies assignment 2.",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
