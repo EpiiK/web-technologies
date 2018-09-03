@@ -3,8 +3,6 @@
 In order to install all the required dependencies for the project you will need to run the following commands.
 ```
 npm install
-cd app/web-technologies-app
-npm install
 ```
 This will install the required dependencies for the front end and backend of the applictaion.
 
