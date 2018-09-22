@@ -2,15 +2,25 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { MapComponent } from './components/map/map.component';
+import { LodgeIncidentComponent } from './components/lodge-incident/lodge-incident.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthService } from './services/auth.service';
+import { RequestService } from './services/request.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MapComponent,
+    LodgeIncidentComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [AuthService, RequestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
