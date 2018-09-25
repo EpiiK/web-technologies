@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { MapComponent } from './components/map/map.component';
@@ -20,7 +21,8 @@ import { routing } from './app.routing';
   ],
   imports: [
     BrowserModule,
-    routing
+    routing,
+    ReactiveFormsModule
   ],
   providers: [AuthService, RequestService],
   bootstrap: [AppComponent]

@@ -5,6 +5,10 @@ const alertSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  incident: {
+    type: String,
+    required: true
+  },
   lattitude: {
     type: Number,
     required: true
@@ -20,6 +24,9 @@ const alertSchema = new mongoose.Schema({
   timeReported: {
     type: Date,
     default: Date.now
+  },
+  description: {
+    type: String
   }
 });
 

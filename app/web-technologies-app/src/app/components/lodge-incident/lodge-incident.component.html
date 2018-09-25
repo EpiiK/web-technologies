@@ -1,3 +1,20 @@
-<p>
-  lodge-incident works!
-</p>
+<form [formGroup]="incidentForm" (ngSubmit)="onSubmit(incidentForm.value)">
+  <div class="form-group">
+    <label for="type">Incident type:</label>
+    <select class="form-control" id="type" formControlName="type">
+      <option *ngFor="let type of types" [value]="type">
+        {{ type }}
+      </option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="location">Incident location:</label>
+    <input id="location" type="text" class="form-control" formControlName="location" />
+    <small *ngIf="incidentForm.controls.location.errors">Enter the address of the incident.</small>
+  </div>
+  <div class="form-group">
+    <label for="description">Incident description:</label>
+    <textarea id="location" class="form-control" formControlName="description" rows="3"></textarea>
+  </div>
+  <button type="submit" class="btn btn-success" [disabled]="!incidentForm.valid">Submit</button>
+</form>
