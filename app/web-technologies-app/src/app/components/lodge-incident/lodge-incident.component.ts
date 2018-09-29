@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { RequestService } from '../../services/request.service';
 
 @Component({
   selector: 'app-lodge-incident',
@@ -16,7 +17,7 @@ export class LodgeIncidentComponent implements OnInit {
     'Police investigation'
   ];
 
-  constructor() { }
+  constructor(private requestService: RequestService) { }
 
   ngOnInit() {
     this.incidentForm = new FormGroup({
@@ -28,6 +29,18 @@ export class LodgeIncidentComponent implements OnInit {
 
   onSubmit(formValues) {
     console.log(formValues);
+    this.requestService.geocodeAddress(formValues.location).subscribe((location) => {
+      formValues.lattitude = location.lat;
+      formValues.longitude = location.lng;
+      formValues.reportedBy = 'Andrew';
+      this.requestService.lodgeIncident(formValues).subscribe((response) => {
+        if (response.success) {
+          alert(response.message);
+        } else {
+          alert(response.message);
+        }
+      });
+    });
   }
 
 }

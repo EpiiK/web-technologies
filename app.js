@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const config = require('./config/database');
+const incidents = require('./routes/incidents');
 
 const app = express();
 
@@ -38,6 +39,9 @@ app.use(bodyParser.json());
 //Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+//Enable routes
+app.use('/incidents', incidents);
 
 app.get('/', (req, res) => {
   res.send('Server is running!');

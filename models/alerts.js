@@ -1,11 +1,8 @@
 const mongoose = require('mongoose');
+const config = require('../config/database');
 
 const alertSchema = new mongoose.Schema({
   alertType: {
-    type: String,
-    required: true
-  },
-  incident: {
     type: String,
     required: true
   },
@@ -36,6 +33,6 @@ module.exports.getAlertsByLocation = function(lattitude, longitude, callback) {
   Alert.find({lattitude: lattitude, longitude: longitude}, callback);
 }
 
-moudle.exports.addAlert = function(newAlert, callback) {
+module.exports.addAlert = function(newAlert, callback) {
   newAlert.save(callback);
 }
