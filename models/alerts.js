@@ -1,17 +1,25 @@
 const mongoose = require('mongoose');
 const config = require('../config/database');
 
+const locationSchema = new mongoose.Schema({
+  type: {
+    type: String,
+    enum: ['Point'],
+    required: true
+  },
+  coordinates: {
+    type: [Number],
+    required: true
+  }
+});
+
 const alertSchema = new mongoose.Schema({
   alertType: {
     type: String,
     required: true
   },
-  lattitude: {
-    type: Number,
-    required: true
-  },
-  longitude: {
-    type: Number,
+  location: {
+    type: locationSchema,
     required: true
   },
   reportedBy: {
@@ -27,10 +35,29 @@ const alertSchema = new mongoose.Schema({
   }
 });
 
+alertSchema.index({ location: '2dsphere' });
+
 const Alert = module.exports = mongoose.model('Alert', alertSchema);
 
-module.exports.getAlertsByLocation = function(lattitude, longitude, callback) {
-  Alert.find({lattitude: lattitude, longitude: longitude}, callback);
+module.exports.getAlertsByLocation = function(latitude, longitude, radius, callback) {
+  const locations = [];
+  Alert.find({
+    location: {
+      $near: {
+        $maxDistance: radius,
+        $geometry: {
+          type: 'Point',
+          coordinates: [longitude, latitude]
+        }
+      }
+    }
+  }, (err, results) => {
+    if (err) {
+      callback(null, err);
+    } else {
+      callback(null, results);
+    }
+  });
 }
 
 module.exports.addAlert = function(newAlert, callback) {

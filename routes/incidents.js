@@ -22,8 +22,7 @@ router.get('/geocode/:address', (req, res, next) => {
 router.post('/lodge', (req, res, next) => {
   let newIncident = new Incident({
     alertType: req.body.type,
-    lattitude: req.body.lattitude,
-    longitude: req.body.longitude,
+    location: { type: 'Point', coordinates: [req.body.longitude, req.body.latitude] },
     reportedBy: req.body.reportedBy,
     description: req.body.description
   });
@@ -33,6 +32,16 @@ router.post('/lodge', (req, res, next) => {
       res.json({ success: false, message: "Failed to register event."});
     } else {
       res.json({ success: true, message: "Event successfully registered."})
+    }
+  });
+});
+
+router.get('/locations/:latitude/:longitude/:radius', (req, res, next) => {
+  Incident.getAlertsByLocation(req.params.latitude, req.params.longitude, req.params.radius, (err, locations) => {
+    if (err) {
+      res.json({ success: false, message: "Failed to find incidents."});
+    } else {
+      res.json({ success: true, message: "Event successfully registered.", markers: locations});
     }
   });
 });

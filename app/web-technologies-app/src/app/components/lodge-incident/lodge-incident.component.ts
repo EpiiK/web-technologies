@@ -30,7 +30,7 @@ export class LodgeIncidentComponent implements OnInit {
   onSubmit(formValues) {
     console.log(formValues);
     this.requestService.geocodeAddress(formValues.location).subscribe((location) => {
-      formValues.lattitude = location.lat;
+      formValues.latitude = location.lat;
       formValues.longitude = location.lng;
       formValues.reportedBy = 'Andrew';
       this.requestService.lodgeIncident(formValues).subscribe((response) => {
