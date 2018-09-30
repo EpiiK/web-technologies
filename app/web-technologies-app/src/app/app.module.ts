@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { MapComponent } from './components/map/map.component';
@@ -20,7 +23,10 @@ import { routing } from './app.routing';
   ],
   imports: [
     BrowserModule,
-    routing
+    routing,
+    ReactiveFormsModule,
+    HttpModule,
+    HttpClientModule
   ],
   providers: [AuthService, RequestService],
   bootstrap: [AppComponent]
