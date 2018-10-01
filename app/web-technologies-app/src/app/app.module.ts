@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+import { AgmCoreModule } from '@agm/core';
 
 import { AppComponent } from './app.component';
 import { MapComponent } from './components/map/map.component';
@@ -26,7 +27,11 @@ import { routing } from './app.routing';
     routing,
     ReactiveFormsModule,
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyA3WcMmbKLsf8BVqZDhnj56Gxak1JsKGsg',
+      libraries: ['places']
+    })
   ],
   providers: [AuthService, RequestService],
   bootstrap: [AppComponent]

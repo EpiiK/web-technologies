@@ -1,7 +1,39 @@
 #map {
-  position: fixed;
+  position: fixed !important;
   top: 0;
   left: 0;
   height: 100vh;
   width: 100vw;
+}
+
+.map__search {
+  position: fixed;
+  top: 2rem;
+  left: 50%;
+  z-index: 2;
+  margin-left: -12.25%;
+
+  height: 2.5rem;
+  width: 25%;
+
+  border-radius: 10px;
+  font-size: 1.25rem;
+
+  border: none;
+  color: #FFF;
+  background: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  cursor: pointer;
+}
+
+.map__search:focus {
+  outline: none;
+}
+
+.map__search::-webkit-input-placeholder {
+   color: #FFF;
+}
+
+.map__report {
+  position: fixed;
 }

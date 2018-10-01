@@ -1,1 +1,17 @@
-<div class="map" id="map"></div>
+<agm-map id="map" 
+  [latitude]="lat" 
+  [longitude]="lng"
+  [zoom]="zoom"
+  (mapReady)="mapReady($event)">
+  <agm-marker
+      *ngFor="let m of markers; let i = index"
+      (markerClick)="clickedMarker(m.label, i)"
+      [latitude]="m.location.coordinates[1]"
+      [longitude]="m.location.coordinates[0]"
+      [iconUrl]="m.iconUrl">
+  </agm-marker>
+</agm-map>
+
+<input id="searchLocation" type="text" class="form-control map__search" #searchLocation autocomplete="off"/>
+
+<button class="map__report mat-raised-button" [routerLink]="['/incident']">Report an incident</button>
