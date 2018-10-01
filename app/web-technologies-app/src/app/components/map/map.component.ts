@@ -10,15 +10,12 @@ import {} from '@types/googlemaps';
 })
 export class MapComponent implements OnInit {
   protected map: any;
-
-  place;
+  // Array to hold incident markers
+  markers =  [];
   // initial center position for the map
   lat = -33.865143;
   lng = 151.209900;
   zoom = 14;
-
-  // Array to hold incident markers
-  markers =  [];
 
   @ViewChild('searchLocation')
   public searchElementRef: ElementRef;
@@ -37,6 +34,8 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit() {
+    // Initalise markers
+    this.updateMarkers();
     navigator.geolocation.getCurrentPosition((position) => {
       this.lat = position.coords.latitude;
       this.lng = position.coords.longitude;
@@ -45,10 +44,6 @@ export class MapComponent implements OnInit {
     // Google Places Autocomplete
     this.mapsAPILoader.load().then(() => {
       const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
-
-      //
-      // TODO Move make listener its own function
-      //
 
       autocomplete.addListener('place_changed', () => {
         this.ngZone.run(() => {
@@ -62,39 +57,41 @@ export class MapComponent implements OnInit {
 
           this.lat = place.geometry.location.lat();
           this.lng = place.geometry.location.lng();
-
-          this.requestService.getMarkers(this.lat, this.lng).subscribe((response) => {
-            if (response.success) {
-              this.markers = response.markers;
-              console.log(this.markers);
-
-              this.markers.forEach(function(value, key) {
-
-                //
-                // TODO implement a better way of assigning icons
-                //
-
-                switch (value.alertType) {
-                  case 'Police investigation':
-                    value.iconUrl = '../../assets/police.png';
-                    break;
-                  case 'Building fire':
-                    value.iconUrl = '../../assets/fire.png';
-                    break;
-                  case 'Car accident':
-                    value.iconUrl = '../../assets/caraccident.png';
-                    break;
-                  default:
-                    value.iconUrl = '../../assets/question.png';
-                }
-              });
-            } else {
-              alert(response.message);
-            }
-          });
-
+          this.updateMarkers();
         });
       });
+    });
+  }
+
+  updateMarkers() {
+    this.requestService.getMarkers(this.lat, this.lng).subscribe((response) => {
+      if (response.success) {
+        this.markers = response.markers;
+        console.log(this.markers);
+
+        this.markers.forEach(function(value, key) {
+
+          //
+          // TODO implement a better way of assigning icons
+          //
+
+          switch (value.alertType) {
+            case 'Police investigation':
+              value.iconUrl = '../../assets/police.png';
+              break;
+            case 'Building fire':
+              value.iconUrl = '../../assets/fire.png';
+              break;
+            case 'Car accident':
+              value.iconUrl = '../../assets/caraccident.png';
+              break;
+            default:
+              value.iconUrl = '../../assets/question.png';
+          }
+        });
+      } else {
+        alert(response.message);
+      }
     });
   }
 
