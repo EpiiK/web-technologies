@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RequestService } from '../../services/request.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lodge-incident',
@@ -17,7 +18,10 @@ export class LodgeIncidentComponent implements OnInit {
     'Police investigation'
   ];
 
-  constructor(private requestService: RequestService) { }
+  constructor(
+    private requestService: RequestService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.incidentForm = new FormGroup({
@@ -36,6 +40,7 @@ export class LodgeIncidentComponent implements OnInit {
       this.requestService.lodgeIncident(formValues).subscribe((response) => {
         if (response.success) {
           alert(response.message);
+          this.router.navigate(['']);
         } else {
           alert(response.message);
         }
