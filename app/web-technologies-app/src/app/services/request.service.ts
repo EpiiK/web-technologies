@@ -25,4 +25,11 @@ export class RequestService {
     .pipe(map((response: any) => response.json()));
   }
 
+  getMarkers(latitude, longitude) {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get('http://localhost:5000/incidents/locations/' + latitude + '/' + longitude + '/10000', { headers: headers })
+    .pipe(map((response: any) => response.json()));
+  }
+
 }
