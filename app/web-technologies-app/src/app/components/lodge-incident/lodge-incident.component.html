@@ -16,5 +16,6 @@
     <label for="description">Incident description:</label>
     <textarea id="location" class="form-control" formControlName="description" rows="3"></textarea>
   </div>
-  <button type="submit" class="btn btn-success" [disabled]="!incidentForm.valid" [routerLink]="['/']">Submit</button>
+  <button type="submit" class="btn btn-success" [disabled]="!incidentForm.valid">Submit</button>
+
 </form>
