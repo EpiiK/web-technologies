@@ -6,6 +6,8 @@ const googleMapsClient = require('@google/maps').createClient({
   key: process.env.GOOGLE_API_KEY,
   Promise: Promise
 });
+const passport = require('passport');
+const jwt = require('jsonwebtoken');
 
 //Geocode an address
 router.get('/geocode/:address', (req, res, next) => {
@@ -42,6 +44,16 @@ router.get('/locations/:latitude/:longitude/:radius', (req, res, next) => {
       res.json({ success: false, message: "Failed to find incidents."});
     } else {
       res.json({ success: true, message: "Event successfully registered.", markers: locations});
+    }
+  });
+});
+
+router.post('/update', passport.authenticate('jwt', { session:false }), (req, res, next) => {
+  Incident.updateAlertStatus(req.body.alertID, (err) => {
+    if (err) {
+      res.json({ success: false, message: "FAILURE"});
+    } else {
+      res.json({ success: true, message: "SUCESS"});
     }
   });
 });

@@ -32,6 +32,10 @@ const alertSchema = new mongoose.Schema({
   },
   description: {
     type: String
+  },
+  inProgress: {
+    type: Boolean,
+    default: true
   }
 });
 
@@ -50,7 +54,7 @@ module.exports.getAlertsByLocation = function(latitude, longitude, radius, callb
           coordinates: [longitude, latitude]
         }
       }
-    }
+    }, inProgress: true
   }, (err, results) => {
     if (err) {
       callback(null, err);
@@ -62,4 +66,16 @@ module.exports.getAlertsByLocation = function(latitude, longitude, radius, callb
 
 module.exports.addAlert = function(newAlert, callback) {
   newAlert.save(callback);
+}
+
+module.exports.updateAlertStatus = function(alertID, callback) {
+  const query = { _id: alertID }
+  Alert.findOne(query, (err, alert) => {
+    if (alert) {
+      alert.inProgress = false;
+      alert.save(callback);
+    } else {
+      console.log(err);
+    }
+  });
 }

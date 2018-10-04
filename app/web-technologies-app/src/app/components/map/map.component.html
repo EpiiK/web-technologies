@@ -16,3 +16,4 @@
 
 <button *ngIf="authService.user" class="map__report mat-raised-button" routerLink="/incident">Report an incident</button>
 <button *ngIf="!authService.user" class="map__report mat-raised-button" routerLink="/login">Login</button>
+<button *ngIf="authService.user" class="map__report mat-raised-button" (click)="onLogout()">Logout</button>

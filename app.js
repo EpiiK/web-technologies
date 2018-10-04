@@ -41,6 +41,8 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
+require('./config/passport')(passport);
+
 //Enable routes
 app.use('/incidents', incidents);
 app.use('/users', users);

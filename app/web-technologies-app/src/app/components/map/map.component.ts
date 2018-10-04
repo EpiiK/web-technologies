@@ -2,6 +2,7 @@ import { Component , OnInit, NgModule, NgZone, ElementRef, ViewChild } from '@an
 import { AgmMap, MapsAPILoader } from '@agm/core';
 import { RequestService } from '../../services/request.service';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 import {} from '@types/googlemaps';
 
 @Component({
@@ -28,7 +29,8 @@ export class MapComponent implements OnInit {
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     private requestService: RequestService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
     // Solution to run map functions
@@ -101,5 +103,9 @@ export class MapComponent implements OnInit {
 
   clickedMarker() {
     console.log('CLICKED');
+  }
+  onLogout() {
+    this.authService.logout();
+    this.router.navigate(['']);
   }
 }

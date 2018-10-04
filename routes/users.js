@@ -64,14 +64,4 @@ router.get('/profile', passport.authenticate('jwt', { session:false }), (req, re
   res.json({user: req.user});
 });
 
-router.post('/updatebc', passport.authenticate('jwt', { session:false }), (req, res, next) => {
-  User.updateBlockchainProfile(req.body.userID, (err) => {
-    if (err) {
-      res.json({ success: false, message: "FAILURE"});
-    } else {
-      res.json({ success: true, message: "SUCESS"});
-    }
-  });
-});
-
 module.exports = router;
