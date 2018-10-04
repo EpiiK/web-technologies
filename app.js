@@ -5,6 +5,7 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 const config = require('./config/database');
 const incidents = require('./routes/incidents');
+const users = require('./routes/users');
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.use(passport.session());
 
 //Enable routes
 app.use('/incidents', incidents);
+app.use('/users', users);
 
 app.get('/', (req, res) => {
   res.send('Server is running!');

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RequestService } from '../../services/request.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -20,7 +21,8 @@ export class LodgeIncidentComponent implements OnInit {
 
   constructor(
     private requestService: RequestService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -36,7 +38,7 @@ export class LodgeIncidentComponent implements OnInit {
     this.requestService.geocodeAddress(formValues.location).subscribe((location) => {
       formValues.latitude = location.lat;
       formValues.longitude = location.lng;
-      formValues.reportedBy = 'Andrew';
+      formValues.reportedBy = this.authService.user.name;
       this.requestService.lodgeIncident(formValues).subscribe((response) => {
         if (response.success) {
           alert(response.message);

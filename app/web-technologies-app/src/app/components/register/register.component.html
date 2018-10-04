@@ -1,3 +1,35 @@
-<p>
-  register works!
-</p>
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit(registrationForm.value)" style="padding: 20px">
+  <div class="form-row">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" formControlName="name" placeholder="Name" />
+      <small class="form-text text-muted" *ngIf="registrationForm.controls.name.errors">Enter your name</small>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="text" id="email" formControlName="email" placeholder="Email" />
+      <small class="form-text text-muted" *ngIf="registrationForm.controls.email.errors">Enter your email</small>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" id="username" formControlName="username" placeholder="Username" />
+      <small class="form-text text-muted" *ngIf="registrationForm.controls.username.errors">Enter your username</small>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" formControlName="password" placeholder="Password" />
+      <small class="form-text text-muted" *ngIf="registrationForm.controls.password.errors">Enter your password</small>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <button type="submit" [disabled]="!registrationForm.valid">Register</button>
+    </div>
+  </div>
+</form>

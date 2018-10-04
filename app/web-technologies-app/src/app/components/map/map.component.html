@@ -1,5 +1,5 @@
-<agm-map id="map" 
-  [latitude]="lat" 
+<agm-map id="map"
+  [latitude]="lat"
   [longitude]="lng"
   [zoom]="zoom"
   (mapReady)="mapReady($event)">
@@ -14,4 +14,5 @@
 
 <input id="searchLocation" type="text" class="form-control map__search" #searchLocation autocomplete="off"/>
 
-<button class="map__report mat-raised-button" [routerLink]="['/incident']">Report an incident</button>
+<button *ngIf="authService.user" class="map__report mat-raised-button" routerLink="/incident">Report an incident</button>
+<button *ngIf="!authService.user" class="map__report mat-raised-button" routerLink="/login">Login</button>

@@ -1,6 +1,7 @@
 import { Component , OnInit, NgModule, NgZone, ElementRef, ViewChild } from '@angular/core';
 import { AgmMap, MapsAPILoader } from '@agm/core';
 import { RequestService } from '../../services/request.service';
+import { AuthService } from '../../services/auth.service';
 import {} from '@types/googlemaps';
 
 @Component({
@@ -23,9 +24,12 @@ export class MapComponent implements OnInit {
   @ViewChild(AgmMap)
   public agmMap: AgmMap;
 
-  constructor(private mapsAPILoader: MapsAPILoader,
-              private ngZone: NgZone,
-              private requestService: RequestService) { }
+  constructor(
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone,
+    private requestService: RequestService,
+    private authService: AuthService
+  ) { }
 
     // Solution to run map functions
     // Called in map.component.html on map ready

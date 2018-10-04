@@ -1,3 +1,21 @@
-<p>
-  login works!
-</p>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)" style="padding: 20px">
+  <div class="form-row">
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" id="username" formControlName="username" placeholder="Username" />
+      <small class="text-muted form-text" *ngIf="loginForm.controls.username.errors">Enter your username</small>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" formControlName="password" placeholder="Password" />
+      <small class="text-muted form-text" *ngIf="loginForm.controls.password.errors">Enter your password</small>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <button type="submit" class="btn btn-success" [disabled]="!loginForm.valid">Login</button>
+    </div>
+  </div>
+</form>
