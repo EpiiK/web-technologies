@@ -101,9 +101,19 @@ export class MapComponent implements OnInit {
     });
   }
 
+  toggleMenu() {
+    document.getElementById('map__info').classList.toggle('show');
+  }
+
   clickedMarker() {
+    if( document.getElementById('map__info').classList.contains('show')){
+
+    }
+
+    //
     console.log('CLICKED');
   }
+
   onLogout() {
     this.authService.logout();
     this.router.navigate(['']);

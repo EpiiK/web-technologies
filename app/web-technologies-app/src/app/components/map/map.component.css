@@ -36,4 +36,52 @@
 
 .map__report {
   position: fixed;
+  top: 5rem;
+  left: 50%;
+  margin-left: -13rem;
+}
+
+.map__report  p{
+  line-height: 1.5rem;
+}
+
+.map__report  button{
+  border-radius: 10px;
+  width: 5rem;
+}
+
+.map__report button:nth-child(1) {
+  margin-right: 1rem;
+  margin-left: 7rem;
+}
+
+#map__info {
+  position: fixed;
+  left: -25%;
+
+  width: 25%;
+  height: 100%;
+
+  background: rgba(0, 0, 0, 0.5);
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+#map__info .map__info__container {
+  position: relative;
+  padding: 2.5rem;
+}
+
+#map__info .map__info__container h1, p{
+  color: #FFF;
+}
+
+#map__info .map__info__container .map__info__close {
+  position: absolute;
+  top: 50vh;
+  right: -13%;
+}
+
+#map__info.show {
+  left: 0 !important;
 }

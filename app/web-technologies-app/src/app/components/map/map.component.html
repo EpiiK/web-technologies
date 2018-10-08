@@ -14,6 +14,28 @@
 
 <input id="searchLocation" type="text" class="form-control map__search" #searchLocation autocomplete="off"/>
 
-<button *ngIf="authService.user" class="map__report mat-raised-button" routerLink="/incident">Report an incident</button>
-<button *ngIf="!authService.user" class="map__report mat-raised-button" routerLink="/login">Login</button>
-<button *ngIf="authService.user" class="map__report mat-raised-button" (click)="onLogout()">Logout</button>
+<div class="map__report">
+  <!-- logged in buttons -->
+  <div *ngIf="authService.user">
+    <button class="mat-raised-button" routerLink="/incident">Report</button>
+    <button class="mat-raised-button" (click)="onLogout()">Logout</button>
+  </div>
+
+  <!-- logged out buttons -->
+  <div *ngIf="!authService.user">
+    <p>To register an event, please login or register a new account</p>
+    <div>
+      <button class="mat-raised-button" routerLink="/login">Login</button>
+      <button class="mat-raised-button" routerLink="/register">Register</button>
+    </div>
+  </div>
+</div>
+
+<div id="map__info">
+  <div class="map__info__container">
+    <button class="mat-raised-button map__info__close" (click)="toggleMenu()">Toggle Menu</button> 
+    <h1>Event Info</h1>
+    <p id="">Location</p>
+    <p id="">Description</p>
+  </div>
+</div>
