@@ -105,13 +105,14 @@ export class MapComponent implements OnInit {
     document.getElementById('map__info').classList.toggle('show');
   }
 
-  clickedMarker() {
-    if( document.getElementById('map__info').classList.contains('show')){
+  clickedMarker(marker) {
+    this.requestService.geocodeAddress('');
 
-    }
-
-    //
-    console.log('CLICKED');
+    if ( document.getElementById('map__info').classList.contains('show')) {}
+    document.getElementById('map__info__description').innerHTML = marker.description;
+    document.getElementById('map__info__type').innerHTML = marker.alertType;
+    //document.getElementById('map__info__description').innerHTML = marker.description;
+    document.getElementById('map__info__reported').innerHTML = marker.reportedBy;
   }
 
   onLogout() {

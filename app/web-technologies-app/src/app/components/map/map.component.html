@@ -5,7 +5,7 @@
   (mapReady)="mapReady($event)">
   <agm-marker
       *ngFor="let m of markers; let i = index"
-      (markerClick)="clickedMarker(m.label, i)"
+      (markerClick)="clickedMarker(m)"
       [latitude]="m.location.coordinates[1]"
       [longitude]="m.location.coordinates[0]"
       [iconUrl]="m.iconUrl">
@@ -35,7 +35,9 @@
   <div class="map__info__container">
     <button class="mat-raised-button map__info__close" (click)="toggleMenu()">Toggle Menu</button> 
     <h1>Event Info</h1>
-    <p id="">Location</p>
-    <p id="">Description</p>
+    <p>Accident Type: <span id="map__info__type"></span></p>
+    <p id="map__info__location">Location</p>
+    <p id="map__info__description">Description</p>
+    <p>Reported By: <span id="map__info__reported"></span></p>
   </div>
 </div>
