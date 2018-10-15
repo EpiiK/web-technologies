@@ -77,10 +77,6 @@ export class MapComponent implements OnInit {
 
         this.markers.forEach(function(value, key) {
 
-          //
-          // TODO implement a better way of assigning icons
-          //
-
           switch (value.alertType) {
             case 'Police investigation':
               value.iconUrl = '../../assets/police.png';
@@ -103,6 +99,7 @@ export class MapComponent implements OnInit {
 
   toggleMenu() {
     document.getElementById('map__info').classList.toggle('show');
+    document.getElementById('map__info__toggleIcon').classList.toggle('show');
   }
 
   clickedMarker(marker) {

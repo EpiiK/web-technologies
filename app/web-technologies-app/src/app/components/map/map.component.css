@@ -76,10 +76,25 @@
   color: #FFF;
 }
 
-#map__info .map__info__container .map__info__close {
+#map__info .map__info__container .map__info__toggle {
   position: absolute;
   top: 50vh;
-  right: -13%;
+  right: -34px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 0;
+  padding: 10px 10px 10px 9px;
+}
+
+#map__info .map__info__container .map__info__toggle:focus {
+  outline:none;
+}
+
+#map__info .map__info__container #map__info__toggleIcon {
+  transform: rotate(180deg);
+}
+
+#map__info .map__info__container #map__info__toggleIcon.show {
+  transform: rotate(0);
 }
 
 #map__info.show {
