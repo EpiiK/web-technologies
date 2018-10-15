@@ -23,7 +23,6 @@
 
   <!-- logged out buttons -->
   <div *ngIf="!authService.user">
-    <p>To register an event, please login or register a new account</p>
     <div>
       <button class="mat-raised-button" routerLink="/login">Login</button>
       <button class="mat-raised-button" routerLink="/register">Register</button>
@@ -39,5 +38,6 @@
     <p id="map__info__location">Location</p>
     <p id="map__info__description">Description</p>
     <p>Reported By: <span id="map__info__reported"></span></p>
+    <p *ngIf="!authService.user" class="map__info__notice">To register an event, please login or register a new account</p>
   </div>
 </div>
