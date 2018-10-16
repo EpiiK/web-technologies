@@ -1,10 +1,11 @@
 {
-  "name": "web-technologies assignment 2",
+  "name": "web-technologies-assignment-two",
   "version": "1.0.0",
   "description": "Back end controller for web-technologies assignment 2.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "author": "Andrew McAdam",
   "license": "ISC",

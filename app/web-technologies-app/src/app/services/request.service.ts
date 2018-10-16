@@ -17,7 +17,7 @@ export class RequestService {
   geocodeAddress(address) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:5000/incidents/geocode/' + address, { headers: headers })
+    return this.http.get('incidents/geocode/' + address, { headers: headers })
     .pipe(map((response: any) => response.json()));
   }
 
@@ -25,14 +25,14 @@ export class RequestService {
   lodgeIncident(newIncident) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:5000/incidents/lodge', newIncident, { headers: headers })
+    return this.http.post('incidents/lodge', newIncident, { headers: headers })
     .pipe(map((response: any) => response.json()));
   }
 
   getMarkers(latitude, longitude) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:5000/incidents/locations/' + latitude + '/' + longitude + '/10000', { headers: headers })
+    return this.http.get('incidents/locations/' + latitude + '/' + longitude + '/10000', { headers: headers })
     .pipe(map((response: any) => response.json()));
   }
 
@@ -43,7 +43,7 @@ export class RequestService {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', this.authService.authToken);
-    return this.http.post('http://localhost:5000/incidents/update', body, { headers: headers })
+    return this.http.post('incidents/update', body, { headers: headers })
     .pipe(map((response: any) => response.json()));
   }
 
